@@ -1,30 +1,50 @@
 package controllers;
 
+
 public class BusquedaBinaria {
 
-    public Integer busquedaBinaria(models.Person[] people, String valor){
-
+    public Integer busquedaBinaria(int[] arr, int objetivo) {
         int izquierda = 0;
-        int derecha = people.length - 1;
+        int derecha = arr.length - 1;
 
-        while (izquierda <= derecha ) {
+        while (izquierda <= derecha) {
             int medio = izquierda + (derecha - izquierda) / 2;
-            int comparacion = people[medio].getName().compareTo(valor);
 
-            //primero validamos el medio
-            if (comparacion == 0) {
-                return medio;
-                
-            } else if (comparacion < 0) {
-                izquierda = medio + 1;
-                
-            } else{
-                derecha  = medio - 1;
+            // 1er validamos el medio
+            if (arr[medio] == objetivo) {
+                return arr[medio];
             }
-            
+
+            // 2do deciddo si busco a la derecha o izquierda
+            if (arr[medio] < objetivo) {
+                izquierda = medio + 1;
+            } else {
+                derecha = medio - 1;
+            }
         }
 
         return null;
     }
 
+    public Integer sortBurbuja(int[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            boolean swapped = false;
+
+
+            for (int j = 0; j < arr.length - 1 - i; j++) {
+
+                if (arr[j] > arr[j + 1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                    swapped = true;
+                }
+            }
+
+            if (!swapped) {
+                break;
+            }
+        }
+        return null;
+    }
 }
